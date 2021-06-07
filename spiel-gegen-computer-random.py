@@ -1,0 +1,141 @@
+import random
+
+square = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+def main():
+    player = 1
+    status = -1
+
+    while status == -1:
+
+
+        if player % 2 == 1:
+            player = 1
+        else:
+            player = 2
+
+        if player == 1:
+            playermove()
+        else:
+            computermove()
+
+
+
+        status = game_status()
+        player += 1
+
+    print('RESULT')
+    if status == 1:
+        print('Player', player - 1, 'win')
+    else:
+        print('Game draw')
+
+
+###############################################
+#    FUNCTION TO RETURN GAME STATUS
+#    1 FOR GAME IS OVER WITH RESULT
+#    -1 FOR GAME IS IN PROGRESS
+#    O GAME IS OVER AND NO RESULT
+###############################################
+
+def game_status():
+    if square[1] == square[2] and square[2] == square[3]:
+        return 1
+    elif square[4] == square[5] and square[5] == square[6]:
+        return 1
+    elif square[7] == square[8] and square[8] == square[9]:
+        return 1
+    elif square[1] == square[4] and square[4] == square[7]:
+        return 1
+    elif square[2] == square[5] and square[5] == square[8]:
+        return 1
+    elif square[3] == square[6] and square[6] == square[9]:
+        return 1
+    elif square[1] == square[5] and square[5] == square[9]:
+        return 1
+    elif square[3] == square[5] and square[5] == square[7]:
+        return 1
+    elif square[1] != 1 and square[2] != 2 and square[3] != 3 and square[4] != 4 and square[5] != 5 and square[
+        6] != 6 and square[7] != 7 and square[8] != 8 and square[9] != 9:
+        return 0
+    else:
+        return -1
+
+
+###############################################
+#    FUNCTION TO DRAW BOARD
+#    OF TIC TAC TOE WITH PLAYERS MARK
+###############################################
+
+
+def board():
+
+    print('\n\n\tTic Tac Toe\n\n')
+
+    print('Player 1 (X)  -  Player 2 (O)')
+    print()
+
+    print('     |     |     ')
+    print(' ', square[1], ' | ', square[2], ' |  ', square[3])
+
+    print('_____|_____|_____')
+    print('     |     |     ')
+
+    print(' ', square[4], ' | ', square[5], ' |  ', square[6])
+
+    print('_____|_____|_____')
+    print('     |     |     ')
+
+    print(' ', square[7], ' | ', square[8], ' |  ', square[9])
+
+    print('     |     |     ')
+
+def computermove():
+    mark = 'O'
+    fertig = -1
+    while fertig == -1:
+        move = random.randint(1, 9)
+        if square[move] == move:
+            square[move] = mark
+            fertig = 1
+
+
+def playermove():
+    status=-1
+    while status == -1:
+        board()
+        mark = 'X'
+        choice = int(input('Enter a number:'))
+        if choice == 1 and square[1] == 1:
+            square[1] = mark
+            status=1
+        elif choice == 2 and square[2] == 2:
+            square[2] = mark
+            status = 1
+        elif choice == 3 and square[3] == 3:
+            square[3] = mark
+            status = 1
+        elif choice == 4 and square[4] == 4:
+            square[4] = mark
+            status = 1
+        elif choice == 5 and square[5] == 5:
+            square[5] = mark
+            status = 1
+        elif choice == 6 and square[6] == 6:
+            square[6] = mark
+            status = 1
+        elif choice == 7 and square[7] == 7:
+            square[7] = mark
+            status = 1
+        elif choice == 8 and square[8] == 8:
+            square[8] = mark
+            status = 1
+        elif choice == 9 and square[9] == 9:
+            square[9] = mark
+            status = 1
+        else:
+            print('Invalid move ')
+
+
+main()
